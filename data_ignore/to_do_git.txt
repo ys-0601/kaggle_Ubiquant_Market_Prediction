@@ -1,0 +1,80 @@
+【初期に実施すべきこと】
+1) 初期設定の登録
+	1. ≪git bash≫を開き、"git config --list"を実行し、下記の登録を確認
+		・user.name="githubのuser name"
+		・user.email="githubの登録mail address"
+
+2) ローカルリポジトリの作成
+	1.≪git bash≫を開き、git管理するフォルダへ移動(cd)
+	2."git init"を実行
+		⇒.gitディレクトリが作成されたことを確認
+
+3) リモートリポジトリ(GitHub)を新規作成
+	1. 下記よりリポジトリを作成
+		・GitHub>profile>Repositories>"new"
+	2. 項目は下記を選択	
+		・Repository name：ローカルのディレクトリ名と一致させる
+		・Publicを選択
+		・READMEを作成
+	3. "Create repository"ボタンを押下
+	　※github上のアドレスをコピーして保管
+	4. ≪git bash≫上で下記コマンドを実行
+	　	・"git remote add origin https://github.com/user_name/repository_name.git"
+		　※アドレスは3.でコピーしたものを使用
+		・"git pull origin master"
+		　※アドレスは上記同様。
+		　※"readme"がローカルにもコピーされたことを確認。
+		・何かしらのtext fileを作成して、"git add .""git commit"を実行。
+
+	5. ≪git bash≫上で下記コマンドを実行
+	　	・"git push -u origin master"
+		　※"-u"は今後"git push"のみでpush実行を可とするコマンド
+	6. 5.のコマンド実行後、下記の手順にて認証を行う
+		・Username：githubのuser nameを記載
+		・Password：Personal access tokenの文字列を記入
+		　※ブラウザ上で自動認証してくれる場合は、その手順に従う
+	7. GitHub上に、ローカルディレクトリの内容がコピーされていることを確認
+	
+4) Git管理しないフォルダ/ファイルの指定
+	1. ".git"ディレクトリと同じ階層にtext editorで".gitignore"という名前のファイルを作成
+	2. ".gitignore"にてgit管理したくないフォルダ/ファイルを下記の規則で記入
+		# #から始まる行はコメント
+		# 指定したファイルを除外
+		index.html
+		# ルートディレクトリを指定
+		/root.html
+		# ディレクトリ以下を除外
+		dir/
+		# /以外の文字列にマッチ「*」
+		/*/*.css
+	3. 念のため、"gitignore"に記載されたフォルダ/ファイルのbkを作成しておく
+	4. "git push"を実行し、"gitignore"に記載フォルダ/ファイルがgithubにコピーされていないことを確認
+	5. 3.で作成したbkは削除 
+
+【適宜実施すべきこと】
+1) 認証用のAccess tokenの作成
+	1. 下記より発行
+		・GitHub>profile>Settings>Developer settings>Personal access tokens>Generate new token
+		　※Note：admin
+		　※Expiration：90 days
+		　※Select scopes：全許可
+	2. 1.で項目全てを記入したら、画面下部より"Generate token"より発行
+	　※発行後画面にてtokenの文字列をコピーし、保管。
+
+
+
+【日々の更新作業】
+1) "work tree"(local)の作業内容を"stage"に追加
+	・"git add ."を実行
+2) "stage"の内容を"local repository"に追加
+	・"git commit"を実行
+	　※commentは日付(＋作業内容)
+3) "local repository"の内容を"remote repository"(local)に追加
+	・"git push origin master"を実行
+4) github上の"remote repository"が更新されていることを確認
+
+【GitHub上のディレクトリをローカルへコピーする方法】
+1) "git init"によりローカルリポジトリを事前に作成しておく
+2) "git clone https://github.com/～～"を実行
+	※github上の"clone or download"ボタンからURLをコピーして上記コマンドに組み込む
+3) 
